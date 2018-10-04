@@ -12,10 +12,10 @@
     <ul><li>
         <button onclick="customPlay(this)">►</button>
         <button onclick="customStop()">■</button>
-        <p id="progressTime"></p>
-        <div id="progressBarControl">
+        <div id="progressBarControl" onclick="clickProgress(this,event)">
             <div id="progressBar">&nbsp</div>
         </div>
+        <span id = "progressTime">00:00</span>
         <input class="range" onclick="controlVolume(this.value)" type="range" step="0.01" min="0" max="1" />
         
     </li></ul>
