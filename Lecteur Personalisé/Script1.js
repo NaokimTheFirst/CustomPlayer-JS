@@ -16,6 +16,8 @@ function customStop(){
     var player = document.querySelector("video");
     player.pause();
     player.currentTime = 0;
+
+    document.getElementById('play').textContent = "►";
 }
 
 function controlVolume(value) {
@@ -76,7 +78,6 @@ function clickProgress(control, event) {
     var parent = getPosition(control);    // La position absolue de la progressBar
     var target = getMousePosition(event); // L'endroit de la progressBar où on a cliqué
     var player = document.querySelector("video");
-   console.log("called");
     var x = target.x - parent.x; 
     var wrapperWidth = document.querySelector('#progressBarControl').offsetWidth;
     
@@ -84,4 +85,79 @@ function clickProgress(control, event) {
     var duration = player.duration;
     
     player.currentTime = (duration * percent) / 100;
+}
+
+function addVideo(){
+    var list = document.getElementById("listeVideo");
+    if(list.children.length === 0){createVideoElem(list);}
+    else{newVideo(list);}
+}
+
+function newVideo(list){
+    var clone = list.children[0].cloneNode(true);
+    list.appendChild(clone);
+}
+
+//Création d'une div de vignette vidéo si aucune n'existe
+function createVideoElem(list){
+    list.innerHTML = "";
+
+    var newDiv = document.createElement("div");
+    list.appendChild(newDiv);
+    newDiv.setAttribute("class","vignette");
+
+
+    var button1 = document.createElement("input");
+    button1.setAttribute("type","button");
+    button1.setAttribute("value","↑");
+    button1.setAttribute("onclick","moveUp(this)")
+    newDiv.appendChild(button1);
+
+    var button2 = document.createElement("input");
+    button2.setAttribute("type","button");
+    button2.setAttribute("value","↓");
+    button2.setAttribute("onclick","moveDown(this)")
+    newDiv.appendChild(button2);
+
+    var button3 = document.createElement("input");
+    button3.setAttribute("type","button");
+    button3.setAttribute("value","Delete");
+    button3.setAttribute("onclick","deleteVid(this)")
+    newDiv.appendChild(button3);
+}
+
+//Déplace l'élément vers le haut dans la liste
+function moveUp(elem){
+    elem = elem.parentNode;
+
+    //Si c'est le premier de la liste, quitte la fonction
+    if(elem.previousSibling === null){return;}
+
+    //On insère l'élément avant celui qui le précède
+    elem.parentNode.insertBefore(elem,elem.previousSibling);
+}
+
+
+//Déplace l'élément vers le bas dans la liste
+function moveDown(elem){
+    elem = elem.parentNode;
+
+    //Si c'est le dernier de la liste, quitte la fonction
+    if(elem.nextSibling === null){return;}
+
+    //On insère l'élément après celui qui le suit
+    elem.parentNode.insertBefore(elem,elem.nextSibling.nextSibling);
+}
+
+//Supprime une vidéo dans la liste d'attente
+function deleteVid(elem){
+    var elem = elem.parentNode;
+    var list = document.getElementById("listeVideo");
+    list.removeChild(elem);
+}
+
+//Supprime une vidéo dans la liste d'attente
+function deleteVid(){
+    var list = document.getElementById("listeVideo");
+    list.removeChild(list.children[0]);
 }

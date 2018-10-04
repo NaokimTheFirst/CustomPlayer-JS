@@ -2,6 +2,34 @@
     list-style:none;
 }
 
+header {
+    text-align: center;
+    color: red;
+}
+
+.vignette{
+    background-color: grey;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width : 100%;
+    min-height: 100px;
+}
+
+#gauche {
+    max-width : 60%;
+    min-height: 100%;
+    float:left;
+    padding: 1%;
+}
+
+#droite {
+    display: block;
+    max-width : 40%;
+    min-height: 100%;
+    float:left;
+    padding: 1%;
+}
+
 #progressTime {
     display:inline-block;
 }
@@ -13,6 +41,6 @@
 
 #progressBarControl{
     display:inline-block;
-    width : 12%;
+    min-width : 30%;
     background-color: grey;
 }
