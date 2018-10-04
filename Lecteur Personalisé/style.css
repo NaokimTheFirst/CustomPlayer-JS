@@ -1,0 +1,18 @@
+﻿ul li{
+    list-style:none;
+}
+
+#progressTime {
+    display:inline-block;
+}
+
+#progressBar {
+    background-color: red;
+    text-align: center;
+}
+
+#progressBarControl{
+    display:inline-block;
+    width : 20%;
+    background-color: grey;
+}

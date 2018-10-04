@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css"/>
+    <title></title>
+</head>
+<body>
+
+    <video ontimeupdate="update(this)"src="oui.mp4" width="600" height="340"></video>
+    <ul><li>
+        <button onclick="customPlay(this)">►</button>
+        <button onclick="customStop()">■</button>
+        <p id="progressTime"></p>
+        <div id="progressBarControl">
+            <div id="progressBar">&nbsp</div>
+        </div>
+        <input class="range" onclick="controlVolume(this.value)" type="range" step="0.01" min="0" max="1" />
+        
+    </li></ul>
+    
+
+</body>
+<script src="Script1.js" ></script>
+</html>
