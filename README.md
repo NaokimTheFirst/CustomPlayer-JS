@@ -13,4 +13,6 @@ Cahier des charges :
 
 Développé par : Prigent Benoit et Peyrot Romain
 
+Fonctionne parfaitement sous Chrome.
+
 Flux RSS fonctionnel : http://feeds.radiokawa.com/podcast_faster-than-light.xml
