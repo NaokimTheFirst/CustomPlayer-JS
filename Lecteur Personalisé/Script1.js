@@ -1,4 +1,8 @@
-﻿// JavaScript source code
+﻿var playlist = [];
+/*
+window.onload = function(){
+    playlist = new Array();
+}*/
 function customPlay(boutonID) {
     var player = document.querySelector("video");
 
@@ -86,8 +90,37 @@ function clickProgress(control, event) {
     
     player.currentTime = (duration * percent) / 100;
 }
+function show(elem) {
+    elem.hidden = false;
+}
 
-function addVideo(){
+function getVideo(elem) {
+    elem.hidden = true;
+    var lien = document.getElementById('lienXML').value;
+    var lien = 'https://cors-anywhere.herokuapp.com/' + lien;
+
+    var request = new XMLHttpRequest();
+    request.open("GET", lien);
+    request.addEventListener('readystatechange', function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var xml = this.responseXML;
+            playlist = xml.getElementsByTagName("item");
+            updateVideoList();
+        }
+    })
+    request.send();
+}
+
+
+function updateVideoList() {
+    for (var i = 0; i < playlist.length; i++) {
+        //console.log(playlist[i].getElementsByTagName("enclosure")[0].textContent);
+        //console.log(playlist[i].getElementsByTagName("itunes:image")[0].href);
+        newVideo(playlist[i]);
+    }
+}
+
+function addVideo() {
     var list = document.getElementById("listeVideo");
     if(list.children.length === 0){createVideoElem(list);}
     else{newVideo(list);}
@@ -95,6 +128,17 @@ function addVideo(){
 
 function newVideo(list){
     var clone = list.children[0].cloneNode(true);
+    list.appendChild(clone);
+}
+
+function newVideo(item) {
+    var list = document.getElementById("listeVideo");
+    var clone = list.children[0].cloneNode(true);
+    var titre = item.getElementsByTagName("title")[0].textContent;
+    var img = item.getElementsByTagName("itunes:image")[0].getAttribute("href");
+
+    clone.querySelector("h2").innerHTML = titre;
+    clone.querySelector("image").setAttribute("href",img);
     list.appendChild(clone);
 }
 
@@ -106,6 +150,14 @@ function createVideoElem(list){
     list.appendChild(newDiv);
     newDiv.setAttribute("class","vignette");
 
+    var title = document.createElement("h2");
+    title.innerHTML ="default";
+    newDiv.appendChild(title);
+
+    var image = document.createElement("image");
+    image.setAttribute("href", "null");
+    image.setAttribute("width","150px");
+    newDiv.appendChild(image);
 
     var button1 = document.createElement("input");
     button1.setAttribute("type","button");
@@ -116,13 +168,13 @@ function createVideoElem(list){
     var button2 = document.createElement("input");
     button2.setAttribute("type","button");
     button2.setAttribute("value","↓");
-    button2.setAttribute("onclick","moveDown(this)")
+    button2.setAttribute("onclick", "moveDown(this)");
     newDiv.appendChild(button2);
 
     var button3 = document.createElement("input");
     button3.setAttribute("type","button");
     button3.setAttribute("value","Delete");
-    button3.setAttribute("onclick","deleteVid(this)")
+    button3.setAttribute("onclick", "deleteVid(this)");
     newDiv.appendChild(button3);
 }
 

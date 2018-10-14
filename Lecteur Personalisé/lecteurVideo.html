@@ -27,15 +27,17 @@
     <div id="droite">
         <div>
             <input type="button" value="Ajouter une vidéo" onclick="addVideo()">
-            <input type="button" value="Ajouter un podcast" >
+            <input type="button" value="Ajouter un podcast" onclick="show(podcastButtons)" >
+            <div id="podcastButtons" hidden>
+                <input type="text" id="lienXML" /><input type="submit" value="Valider" onclick="getVideo(podcastButtons)"/>
+            </div>
+            
         </div>
         
         <div id="listeVideo">
-            The list is empty :(
+            Quand un joueur d'exception termine un jeu en un temps record, on appelle ça un speedrun.
         </div>
     </div>
-    
-
-</body>
+    </body>
 <script src="Script1.js" ></script>
 </html>
