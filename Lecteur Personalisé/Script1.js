@@ -139,13 +139,20 @@ function getVideo(elem) {
 
 //Fonction qui ajoute des div à la page web
 function updateVideoList(previousLength) {
+
+    //Si la liste était vide auparavant, on enlève le texte d'information de la liste
+    if(previousLength == 0){
+        var list = document.getElementById("listeVideo");
+        list.innerHTML = "";
+    }
+
     //Pour chaque nouvel élément de la liste on ajoute un div
     for (var i = previousLength; i < playlist.length; i++) {
         newDiv = createVideoElem();
         newVideo(playlist[i], newDiv);
     }
 
-    //Si la liste était vide auparavant on démarre la première vidéo
+    //Si la liste était vide auparavant, on démarre la première vidéo
     if(previousLength == 0){
         StartFirstVid();
     }
@@ -163,12 +170,6 @@ function newVideo(item, div) {
 //Création d'une div de vignette vidéo
 function createVideoElem(){
     var list = document.getElementById("listeVideo");
-
-    //On enlève le message qui explique que la liste est vide
-    if(list.childElementCount == 0){
-        list.innerHTML = "";
-    }
-    
 
     var newDiv = document.createElement("div");
     list.appendChild(newDiv);
