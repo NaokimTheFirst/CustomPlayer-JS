@@ -2,9 +2,9 @@
 
 function customPlay() {
     var player = document.querySelector("video");
-    button = document.getElementById('play');
+    var button = document.getElementById('play');
 
-    if(player.getAttribute("src")!=""){
+    if(player.getAttribute("src")!=null){
         if (player.paused) {
             player.play();
             button.textContent = "||"; 
@@ -18,7 +18,7 @@ function customPlay() {
 function customStop(){
     var player = document.querySelector("video");
 
-    if(player.getAttribute("src")!=""){
+    if(player.getAttribute("src")!=null){
         player.pause();
         player.currentTime = 0;
 
@@ -57,7 +57,7 @@ function format(time) {
         seconds = "0" + seconds;
     }
 
-    result = minutes +" : "+seconds;
+    var result = minutes +" : "+seconds;
     return result;
 }
 
@@ -75,14 +75,14 @@ function getPosition(element){
     do{
         top += element.offsetTop;
         left += element.offsetLeft;
-    }while (element = element.offsetParent);
+    }while (element === element.offsetParent);
 
     return{x: left, y:top};
 }
 
 function clickProgress(control, event) {
     var player = document.querySelector("video");
-    if(player.getAttribute("src")!=""){
+    if(player.getAttribute("src")!=null){
         //On enregistre l'état du lecteur pause ou play
         var status = player.paused;
         //Si le lecteur est sur play, on le stop
@@ -110,9 +110,10 @@ function show(elem) {
     elem.hidden = false;
 }
 
-function getVideo(elem) {
+//Récupère des vidéos depuis un fichier XML
+function getVideoFromXML(button) {
     //On cache le champ qui permet de rentrer un url
-    elem.hidden = true;
+    button.hidden = true;
 
     //On enregistre la taille de la liste avant modification
     var previousLength = playlist.length;
@@ -127,13 +128,13 @@ function getVideo(elem) {
     request.addEventListener('readystatechange', function () {
         if (this.readyState === 4 && this.status === 200) {
             var xml = this.responseXML;
-            listElem =xml.getElementsByTagName("item")
+            var listElem =xml.getElementsByTagName("item");
             for (var i = 0; i < listElem.length; i++) {
                 playlist.push(listElem[i]);
             }
             updateVideoList(previousLength);
         }
-    })
+    });
     request.send();
 }
 
@@ -148,7 +149,7 @@ function updateVideoList(previousLength) {
 
     //Pour chaque nouvel élément de la liste on ajoute un div
     for (var i = previousLength; i < playlist.length; i++) {
-        newDiv = createVideoElem();
+        var newDiv = createVideoElem();
         newVideo(playlist[i], newDiv);
     }
 
@@ -181,13 +182,13 @@ function createVideoElem(){
 
     var image = document.createElement("img");
     image.setAttribute("src", "null");
-    image.setAttribute("class","IMGvignette")
+    image.setAttribute("class","IMGvignette");
     newDiv.appendChild(image);
 
     var button1 = document.createElement("input");
     button1.setAttribute("type","button");
     button1.setAttribute("value","↑");
-    button1.setAttribute("onclick","moveUp(this)")
+    button1.setAttribute("onclick","moveUp(this)");
     newDiv.appendChild(button1);
 
     var button2 = document.createElement("input");
@@ -277,7 +278,7 @@ function StartFirstVid(){
 
 //Supprime une vidéo dans la liste d'attente
 function RemoveVid(elem){
-    var elem = elem.parentNode;
+    elem = elem.parentNode;
     var list = document.getElementById("listeVideo");
 
     //On compte pour savoir quelle est la position de la vidéo dans la liste de div

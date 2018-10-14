@@ -6,22 +6,22 @@
     <link rel="stylesheet" href="style.css"/>
     <title>Custom Player JS</title>
 </head>
-<header><h1>Custom Player JS</h1></header>
 <body>
+    <header><h1>Custom Player JS</h1></header>
     <div id="gauche">
 
-        <video ontimeupdate="update(this)" onended="startNextVid()" src=""  width="100%"></video>
+        <video ontimeupdate="update(this)" onended="startNextVid()"  style="width:100%;"></video>
 
         <button id="play" onclick="customPlay()">►</button>
         <button onclick="customStop()">■</button>
         <div id="progressBarControl" onclick="clickProgress(this,event)">
-            <div id="progressBar">&nbsp</div>
+            <div id="progressBar">&nbsp;</div>
         </div>
         <span id = "progressTime">00:00</span>
         <input class="range" onclick="controlVolume(this.value)" type="range" step="0.01" min="0" max="1" />
 
         <br>
-        <h2 id="currentVideoTitle"></h2>
+        <h2 id="currentVideoTitle">&nbsp;</h2>
 
     </div>
 
@@ -29,9 +29,9 @@
     <div id="droite">
         <div>
             <input type="button" value="Ajouter un podcast" onclick="show(podcastButtons)">
-            <input type="checkbox" id="autoplay" checked= true><label for="autoplay">Autoplay</label>
+            <input type="checkbox" id="autoplay" checked><label for="autoplay">Autoplay</label>
             <div id="podcastButtons" hidden>
-                <input type="text" id="lienXML" /><input type="submit" value="Valider" onclick="getVideo(podcastButtons)"/>
+                <input type="text" id="lienXML" /><input type="submit" value="Valider" onclick="getVideoFromXML(podcastButtons)"/>
             </div>
             
         </div>
@@ -44,6 +44,7 @@
             </ul>
         </div>
     </div>
-    </body>
-<script src="Script1.js" ></script>
+
+    <script src="Script1.js" ></script>
+</body>
 </html>
