@@ -267,8 +267,12 @@ function StartFirstVid(){
     title.innerHTML = playlist[0].getElementsByTagName("title")[0].textContent;
     //Change le lien de la vidéo
     player.setAttribute("src",lien);
-    //Démarre la video
-    customPlay();
+
+    //Si l'autoplay est activé
+    if(document.getElementById("autoplay").checked === true){
+        //Démarre la video
+        customPlay();
+    }
 }
 
 //Supprime une vidéo dans la liste d'attente
