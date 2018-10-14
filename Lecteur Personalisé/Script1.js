@@ -261,6 +261,10 @@ function StartNextVid(){
 function StartFirstVid(){
     var player = document.querySelector("video");
     var lien = playlist[0].getElementsByTagName("enclosure")[0].getAttribute("url");
+    var title = document.getElementById("currentVideoTitle");
+
+    //Change le titre de la vidéo courrante
+    title.innerHTML = playlist[0].getElementsByTagName("title")[0].textContent;
     //Change le lien de la vidéo
     player.setAttribute("src",lien);
     //Démarre la video
