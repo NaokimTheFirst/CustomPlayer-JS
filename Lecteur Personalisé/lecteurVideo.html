@@ -10,9 +10,9 @@
 <body>
     <div id="gauche">
 
-        <video ontimeupdate="update(this)" onended="deleteVid()" src="oui.mp4" width="100%"></video>
+        <video ontimeupdate="update(this)" onended="startNextVid()" src=""  width="100%"></video>
 
-        <button id="play" onclick="customPlay(this)">►</button>
+        <button id="play" onclick="customPlay()">►</button>
         <button onclick="customStop()">■</button>
         <div id="progressBarControl" onclick="clickProgress(this,event)">
             <div id="progressBar">&nbsp</div>
@@ -26,7 +26,6 @@
 
     <div id="droite">
         <div>
-            <input type="button" value="Ajouter une vidéo" onclick="addVideo()">
             <input type="button" value="Ajouter un podcast" onclick="show(podcastButtons)" >
             <div id="podcastButtons" hidden>
                 <input type="text" id="lienXML" /><input type="submit" value="Valider" onclick="getVideo(podcastButtons)"/>
@@ -35,7 +34,7 @@
         </div>
         
         <div id="listeVideo">
-            Quand un joueur d'exception termine un jeu en un temps record, on appelle ça un speedrun.
+            Aucune vidéo dans la liste !
         </div>
     </div>
     </body>

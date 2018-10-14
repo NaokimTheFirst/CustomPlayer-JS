@@ -16,7 +16,7 @@ header {
 }
 
 #gauche {
-    max-width : 60%;
+    max-width : 50%;
     min-height: 100%;
     float:left;
     padding: 1%;
@@ -43,4 +43,8 @@ header {
     display:inline-block;
     min-width : 30%;
     background-color: grey;
+}
+
+.IMGvignette{
+    max-width: 30%;
 }
